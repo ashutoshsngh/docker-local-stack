@@ -1,0 +1,16 @@
+version: '2'
+services:
+  php:
+    build:
+      context: ./services/php
+
+  web:
+    build:
+      context: ./services/nginx
+    ports:
+      - 80:80
+    volumes:
+      - '/home/assingh/Projects:/var/www/html'
+      - ./services/nginx/sites:/etc/nginx/conf.d
+    depends_on:
+      - php
